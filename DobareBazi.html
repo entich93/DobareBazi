@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دوباره‌بازی | اسباب‌بازی‌های دست دوم، سالم و مطمئن</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F6EEDA;
+    --paper-deep: #EFE4C8;
+    --ink: #2A2620;
+    --ink-soft: #5C5748;
+    --teal: #2F6E73;
+    --teal-deep: #234F53;
+    --mustard: #E8A33D;
+    --brick: #C1483B;
+    --card: #FFFBF2;
+    --line: rgba(42,38,32,0.14);
+    --radius: 18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  section[id]{scroll-margin-top:88px;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Vazirmatn', sans-serif;
+    line-height:1.75;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo Bhaijaan 2', 'Vazirmatn', sans-serif;
+    font-weight:700;
+    margin:0;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* stitched divider — signature motif */
+  .stitch{
+    height:0;
+    border-top:2.5px dashed rgba(42,38,32,0.28);
+    position:relative;
+    margin:0;
+  }
+  .stitch::before, .stitch::after{
+    content:'';
+    position:absolute;
+    top:-7px;
+    width:14px;height:14px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2.5px solid rgba(42,38,32,0.28);
+  }
+  .stitch::before{right:6%;}
+  .stitch::after{left:6%;}
+
+  /* header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,238,218,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:2px dashed rgba(42,38,32,0.2);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 0;position:relative;gap:12px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-size:22px;font-weight:700;
+  }
+  .logo-badge{
+    width:34px;height:34px;border-radius:9px;
+    background:var(--teal);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper);font-size:18px;
+    transform:rotate(-6deg);
+    box-shadow:2px 3px 0 rgba(42,38,32,0.18);
+  }
+  .nav-links{display:flex;gap:32px;font-size:15px;font-weight:500;list-style:none;padding:0;margin:0;}
+  .nav-links a{text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent;transition:border-color .2s;}
+  .nav-links a:hover{border-color:var(--mustard);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;border-radius:999px;
+    font-weight:600;font-size:15px;text-decoration:none;
+    border:2px solid var(--ink);
+    cursor:pointer;
+    transition:transform .15s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--teal);color:var(--paper);border-color:var(--teal);}
+  .btn-outline{background:transparent;color:var(--ink);}
+  .btn-sm{padding:8px 16px;font-size:13px;}
+  .menu-toggle{display:none;background:none;border:none;font-size:26px;cursor:pointer;color:var(--ink);}
+
+  /* hero */
+  .hero{padding:76px 0 60px;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--card);border:2px solid var(--ink);
+    border-radius:999px;padding:6px 16px;font-size:13px;font-weight:600;
+    margin-bottom:20px;
+  }
+  .eyebrow::before{content:'♻';color:var(--teal);}
+  .hero h1{font-size:52px;line-height:1.28;margin-bottom:22px;}
+  .hero h1 em{font-style:normal;color:var(--teal);position:relative;}
+  .hero p.lead{font-size:18px;color:var(--ink-soft);max-width:520px;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+
+  .shelf{
+    position:relative;
+    background:var(--paper-deep);
+    border-radius:24px;
+    padding:28px;
+    border:2px solid var(--ink);
+  }
+  .shelf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .toy-photo{
+    background:var(--card);
+    border:2px solid var(--ink);
+    border-radius:14px;
+    padding:14px;
+    box-shadow:3px 4px 0 rgba(42,38,32,0.14);
+  }
+  .toy-photo:nth-child(1){transform:rotate(-3deg);}
+  .toy-photo:nth-child(2){transform:rotate(2deg);margin-top:26px;}
+  .toy-photo:nth-child(3){transform:rotate(2.5deg);margin-top:-18px;}
+  .toy-photo:nth-child(4){transform:rotate(-2deg);}
+  .toy-emoji{font-size:44px;text-align:center;margin-bottom:8px;}
+  .toy-tag{font-size:12px;font-weight:600;text-align:center;color:var(--ink-soft);}
+
+  /* trust bar */
+  .trust{padding:44px 0;}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+  .trust-num{font-family:'Baloo Bhaijaan 2';font-size:34px;color:var(--teal-deep);}
+  .trust-label{font-size:14px;color:var(--ink-soft);margin-top:4px;}
+
+  section{padding:64px 0;}
+  .section-head{max-width:640px;margin:0 auto 40px;text-align:center;}
+  .section-head h2{font-size:34px;margin-bottom:12px;}
+  .section-head p{color:var(--ink-soft);font-size:16px;}
+
+  /* categories */
+  .cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+  .cat-card{
+    background:var(--card);border:2px solid var(--ink);border-radius:16px;
+    padding:22px 14px;text-align:center;text-decoration:none;color:var(--ink);
+    transition:transform .18s, box-shadow .18s;
+  }
+  .cat-card:hover{transform:translateY(-4px);box-shadow:3px 5px 0 rgba(42,38,32,0.18);}
+  .cat-emoji{font-size:32px;margin-bottom:10px;}
+  .cat-card span{font-size:14px;font-weight:600;}
+
+  /* products */
+  .shop-crumb{font-size:13px;color:var(--ink-soft);margin-bottom:20px;}
+  .shop-crumb span{margin:0 6px;}
+  .shop-layout{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start;}
+  .shop-filters{
+    background:var(--card);border:2px solid var(--ink);border-radius:14px;
+    padding:18px;position:sticky;top:96px;
+  }
+  .filter-block{padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--line);}
+  .filter-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .filter-block h4{font-size:13px;margin-bottom:10px;}
+  .filter-block label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);margin-bottom:8px;cursor:pointer;}
+  .filter-block input{accent-color:var(--teal);cursor:pointer;}
+  .shop-toolbar{
+    display:flex;justify-content:space-between;align-items:center;
+    background:var(--card);border:2px solid var(--ink);border-radius:12px;
+    padding:10px 16px;margin-bottom:18px;font-size:13px;
+  }
+  .shop-result-count{color:var(--ink-soft);font-weight:600;}
+  .sort-select{
+    border:2px solid var(--ink);border-radius:8px;padding:6px 10px;background:var(--paper);
+    font-family:inherit;font-size:13px;
+  }
+
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .prod-card{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    overflow:hidden;position:relative;display:flex;flex-direction:column;
+    transition:box-shadow .15s, border-color .15s;
+  }
+  .prod-card:hover{box-shadow:0 6px 18px rgba(42,38,32,0.1);border-color:var(--ink);}
+  .prod-img{
+    background:var(--paper-deep);height:140px;display:flex;align-items:center;justify-content:center;
+    font-size:52px;position:relative;
+  }
+  .cond-tag{
+    position:absolute;top:10px;right:10px;
+    font-size:10px;font-weight:700;padding:3px 9px;border-radius:6px;
+    color:#fff;
+  }
+  .cond-new{background:var(--teal);}
+  .cond-good{background:var(--mustard);color:var(--ink);}
+  .cond-fair{background:var(--brick);}
+  .discount-badge{
+    position:absolute;top:10px;left:10px;background:var(--brick);color:#fff;
+    font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;
+  }
+  .prod-body{padding:14px;display:flex;flex-direction:column;flex:1;}
+  .prod-name{font-weight:600;font-size:13.5px;margin-bottom:6px;line-height:1.5;min-height:40px;}
+  .prod-rating{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--mustard);margin-bottom:8px;}
+  .prod-rating span{color:var(--ink-soft);}
+  .prod-meta{display:flex;flex-direction:column;gap:2px;margin-top:auto;}
+  .prod-old{font-size:11px;color:var(--ink-soft);text-decoration:line-through;}
+  .prod-price{font-family:'Baloo Bhaijaan 2';font-size:17px;color:var(--ink);}
+  .prod-price b{font-size:13px;font-weight:600;}
+
+  /* how it works */
+  .flow-toggle{display:flex;justify-content:center;gap:10px;margin-bottom:36px;}
+  .flow-tab{
+    padding:10px 24px;border-radius:999px;border:2px solid var(--ink);
+    font-weight:600;font-size:14px;cursor:pointer;background:transparent;
+  }
+  .flow-tab.active{background:var(--ink);color:var(--paper);}
+  .flow-panel{display:none;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .flow-panel.active{display:grid;}
+  .flow-step{
+    background:var(--card);border:2px dashed rgba(42,38,32,0.3);border-radius:16px;
+    padding:24px;
+  }
+  .flow-num{
+    width:34px;height:34px;border-radius:50%;background:var(--mustard);
+    display:flex;align-items:center;justify-content:center;font-weight:700;
+    font-family:'Baloo Bhaijaan 2';margin-bottom:14px;
+  }
+  .flow-step h3{font-size:17px;margin-bottom:8px;}
+  .flow-step p{font-size:14px;color:var(--ink-soft);margin:0;}
+
+  /* testimonials */
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .test-card{
+    background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:24px;
+    box-shadow:3px 4px 0 rgba(42,38,32,0.1);
+  }
+  .test-card p.quote{font-size:15px;margin-bottom:16px;}
+  .test-who{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-soft);}
+  .test-avatar{width:34px;height:34px;border-radius:50%;background:var(--teal);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:16px;}
+
+  /* newsletter / footer */
+  .cta-band{
+    background:var(--teal-deep);color:var(--paper);border-radius:24px;
+    padding:48px;text-align:center;
+  }
+  .cta-band h2{font-size:30px;margin-bottom:12px;}
+  .cta-band p{color:rgba(246,238,218,0.85);margin-bottom:26px;}
+  .cta-band .btn-primary{background:var(--mustard);border-color:var(--mustard);color:var(--ink);}
+
+  .sell-form{
+    max-width:640px;margin:40px auto 0;
+    background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);
+    padding:28px;
+  }
+  .sell-form h3{font-size:18px;margin-bottom:6px;}
+  .sell-form p.hint{font-size:13px;color:var(--ink-soft);margin:0 0 18px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .field input, .field textarea{
+    width:100%;padding:11px 14px;border-radius:10px;border:2px solid var(--ink);
+    background:var(--paper);font-family:inherit;font-size:14px;color:var(--ink);
+  }
+  .field textarea{resize:vertical;min-height:80px;}
+  .form-msg{
+    display:none;margin-top:14px;padding:12px 16px;border-radius:10px;
+    background:rgba(47,110,115,0.12);color:var(--teal-deep);font-size:14px;font-weight:600;
+  }
+  .form-msg.show{display:block;}
+  .nl-msg{font-size:13px;color:var(--teal-deep);font-weight:600;margin-top:8px;display:none;}
+  .nl-msg.show{display:block;}
+
+  .admin-link{font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;font-family:inherit;}
+
+  #admin-gate, #admin-panel{display:none;}
+  #admin-gate.show, #admin-panel.show{display:block;}
+  .admin-box{
+    max-width:380px;margin:80px auto;background:var(--card);border:2px solid var(--ink);
+    border-radius:var(--radius);padding:28px;text-align:center;
+  }
+  .admin-box input{width:100%;padding:11px 14px;border-radius:10px;border:2px solid var(--ink);
+    background:var(--paper);font-family:inherit;font-size:14px;margin:16px 0;text-align:center;}
+  .admin-wrap{max-width:1000px;margin:0 auto;padding:32px 24px 64px;}
+  .admin-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;}
+  .admin-head h2{font-size:26px;}
+  .admin-section{background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:22px;margin-bottom:24px;}
+  .admin-section h3{font-size:16px;margin-bottom:16px;}
+  .admin-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .admin-table th, .admin-table td{padding:10px;text-align:right;border-bottom:1px solid var(--line);}
+  .admin-table th{color:var(--ink-soft);font-weight:600;}
+  .admin-empty{color:var(--ink-soft);font-size:13px;padding:12px 0;}
+  .admin-add-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px;}
+  .admin-add-grid .field{margin-bottom:0;}
+  .del-btn{background:var(--brick);color:#fff;border:none;border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer;}
+  .badge-count{background:var(--mustard);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;}
+
+  .cart-btn{
+    position:relative;background:transparent;border:2px solid var(--ink);border-radius:999px;
+    width:42px;height:42px;display:flex;align-items:center;justify-content:center;
+    font-size:18px;cursor:pointer;
+  }
+  .cart-count{
+    position:absolute;top:-6px;left:-6px;background:var(--brick);color:#fff;
+    font-size:11px;font-weight:700;border-radius:999px;min-width:18px;height:18px;
+    display:flex;align-items:center;justify-content:center;padding:0 4px;
+  }
+  .cart-add-btn{
+    width:100%;margin-top:12px;padding:9px;border-radius:10px;border:2px solid var(--ink);
+    background:var(--paper);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;
+  }
+  .cart-add-btn:hover{background:var(--teal);color:var(--paper);border-color:var(--teal);}
+
+  .cart-overlay{
+    display:none;position:fixed;inset:0;background:rgba(42,38,32,0.4);z-index:100;
+  }
+  .cart-overlay.show{display:block;}
+  .cart-drawer{
+    position:fixed;top:0;left:0;height:100%;width:380px;max-width:90vw;
+    background:var(--paper);border-left:2px solid var(--ink);
+    padding:24px;overflow-y:auto;
+  }
+  .cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+  .cart-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
+  .cart-item{
+    display:flex;gap:12px;align-items:center;background:var(--card);border:2px solid var(--ink);
+    border-radius:12px;padding:10px;margin-bottom:10px;
+  }
+  .cart-item-emoji{font-size:26px;}
+  .cart-item-info{flex:1;}
+  .cart-item-name{font-size:13px;font-weight:600;margin-bottom:4px;}
+  .cart-item-price{font-size:12px;color:var(--ink-soft);}
+  .qty-controls{display:flex;align-items:center;gap:6px;}
+  .qty-btn{width:24px;height:24px;border-radius:6px;border:2px solid var(--ink);background:var(--paper);cursor:pointer;font-size:13px;}
+  .cart-total{
+    display:flex;justify-content:space-between;font-weight:700;font-size:16px;
+    padding:16px 0;border-top:2px dashed rgba(42,38,32,0.28);margin-top:12px;
+  }
+  .checkout-form{display:none;margin-top:16px;}
+  .checkout-form.show{display:block;}
+  .cart-empty{text-align:center;color:var(--ink-soft);font-size:14px;padding:40px 0;}
+
+  footer{padding:48px 0 32px;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px;}
+  .footer-grid h4{font-size:15px;margin-bottom:14px;}
+  .footer-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;font-size:14px;color:var(--ink-soft);}
+  .foot-bottom{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft);border-top:2px dashed rgba(42,38,32,0.2);padding-top:20px;}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .trust-grid{grid-template-columns:repeat(2,1fr);}
+    .cat-grid{grid-template-columns:repeat(3,1fr);}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .shop-layout{grid-template-columns:1fr;}
+    .shop-filters{position:static;}
+    .flow-panel{grid-template-columns:1fr;}
+    .test-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{
+      display:none;position:absolute;top:100%;right:0;left:0;
+      flex-direction:column;gap:0;background:var(--paper);
+      border-bottom:2px dashed rgba(42,38,32,0.2);padding:8px 24px 16px;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links li{padding:10px 0;border-bottom:1px dashed var(--line);}
+    .nav-links li:last-child{border-bottom:none;}
+    .menu-toggle{display:block;}
+    .nav .btn-primary.btn-sm{display:none;}
+    .hero h1{font-size:36px;}
+  }
+
+  @media(max-width:640px){
+    .wrap{padding:0 16px;}
+    .hero{padding:48px 0 40px;}
+    .hero h1{font-size:28px;line-height:1.35;}
+    .hero p.lead{font-size:15px;}
+    .hero-actions .btn{flex:1;justify-content:center;text-align:center;}
+    .shelf-row{grid-template-columns:1fr 1fr;gap:10px;}
+    .toy-photo{padding:10px;}
+    .toy-emoji{font-size:32px;}
+    .trust-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+    .trust-num{font-size:24px;}
+    .section-head h2{font-size:24px;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .prod-grid{grid-template-columns:1fr 1fr;gap:10px;}
+    .prod-name{font-size:12.5px;min-height:34px;}
+    .prod-price{font-size:15px;}
+    .shop-toolbar{flex-direction:column;align-items:stretch;gap:8px;}
+    .sort-select{width:100%;}
+    .flow-toggle{flex-wrap:wrap;}
+    .test-grid{gap:14px;}
+    .footer-grid{grid-template-columns:1fr;gap:22px;}
+    .foot-bottom{flex-direction:column;gap:8px;text-align:center;}
+    .cta-band{padding:32px 20px;}
+    .cta-band h2{font-size:22px;}
+    .cart-drawer{width:100%;max-width:100%;}
+    .admin-wrap{padding:20px 16px 48px;}
+    .admin-add-grid{grid-template-columns:1fr;}
+    .admin-table{font-size:12px;}
+    .admin-table th, .admin-table td{padding:7px;}
+    .admin-head{flex-direction:column;align-items:stretch;gap:10px;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<div id="storefront">
+<header>
+  <div class="wrap nav">
+    <div class="logo">
+      <div class="logo-badge">♻</div>
+      دوباره‌بازی
+    </div>
+    <ul class="nav-links">
+      <li><a href="#products">فروشگاه</a></li>
+      <li><a href="#categories">دسته‌بندی‌ها</a></li>
+      <li><a href="#sell">فروش اسباب‌بازی</a></li>
+      <li><a href="#about">درباره ما</a></li>
+    </ul>
+    <a href="#sell" class="btn btn-primary btn-sm">فروش اسباب‌بازی شما</a>
+    <button class="cart-btn" id="cart-open-btn" aria-label="سبد خرید">🛒<span class="cart-count" id="cart-count" style="display:none;">0</span></button>
+    <button class="menu-toggle" aria-label="منو">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">بازرسی‌شده، ضدعفونی‌شده، تضمین‌شده</div>
+      <h1>به هر اسباب‌بازی یه <em>بازی دوباره</em> بده</h1>
+      <p class="lead">اسباب‌بازی‌های دست دوم، تمیز و سالم، با قیمتی که به همه می‌رسه. هر خرید یعنی یه اسباب‌بازی کمتر تو زباله و یه لبخند بیشتر تو خونه یکی دیگه.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-primary">مشاهده فروشگاه</a>
+        <a href="#sell" class="btn btn-outline">می‌خوام بفروشم</a>
+      </div>
+    </div>
+    <div class="shelf">
+      <div class="shelf-row">
+        <div class="toy-photo"><div class="toy-emoji">🧸</div><div class="toy-tag">در حد نو</div></div>
+        <div class="toy-photo"><div class="toy-emoji">🚂</div><div class="toy-tag">نو مثل نو</div></div>
+        <div class="toy-photo"><div class="toy-emoji">🧩</div><div class="toy-tag">خوب</div></div>
+        <div class="toy-photo"><div class="toy-emoji">🪀</div><div class="toy-tag">در حد نو</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="stitch"></div></div>
+
+<section class="trust">
+  <div class="wrap trust-grid">
+    <div><div class="trust-num">۱۲,۴۰۰+</div><div class="trust-label">اسباب‌بازی نجات‌ یافته</div></div>
+    <div><div class="trust-num">۱۸ نقطه</div><div class="trust-label">بازرسی ایمنی و سلامت</div></div>
+    <div><div class="trust-num">۷ روز</div><div class="trust-label">ضمانت بازگشت وجه</div></div>
+    <div><div class="trust-num">۴.۸ / ۵</div><div class="trust-label">رضایت والدین</div></div>
+  </div>
+</section>
+
+<section id="categories">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>دنبال چی می‌گردی؟</h2>
+      <p>هر اسباب‌بازی قبل از رسیدن به فروشگاه، شسته، بازرسی و قیمت‌گذاری شده.</p>
+    </div>
+    <div class="cat-grid">
+      <a href="#" class="cat-card"><div class="cat-emoji">🪆</div><span>عروسک و عروسک‌خونه</span></a>
+      <a href="#" class="cat-card"><div class="cat-emoji">🚗</div><span>ماشین و ریموت‌کنترلی</span></a>
+      <a href="#" class="cat-card"><div class="cat-emoji">🧱</div><span>لگو و سازه‌ای</span></a>
+      <a href="#" class="cat-card"><div class="cat-emoji">🧠</div><span>فکری و آموزشی</span></a>
+      <a href="#" class="cat-card"><div class="cat-emoji">🎲</div><span>تخته‌ای و پازل</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="stitch"></div></div>
+
+<section id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>تازه‌ترین‌های فروشگاه</h2>
+      <p>هر تگ رنگی روی محصول، وضعیت واقعی‌شو نشون می‌ده؛ نه توصیف اغراق‌شده.</p>
+    </div>
+
+    <div class="shop-crumb">🏠 خانه <span>›</span> اسباب‌بازی <span>›</span> همه محصولات</div>
+
+    <div class="shop-layout">
+      <aside class="shop-filters">
+        <div class="filter-block">
+          <h4>دسته‌بندی</h4>
+          <label><input type="checkbox" class="filter-cat" value="عروسک" checked> عروسک و عروسک‌خونه</label>
+          <label><input type="checkbox" class="filter-cat" value="ماشین" checked> ماشین و ریموت‌کنترلی</label>
+          <label><input type="checkbox" class="filter-cat" value="لگو" checked> لگو و سازه‌ای</label>
+          <label><input type="checkbox" class="filter-cat" value="پازل" checked> فکری، آموزشی و پازل</label>
+        </div>
+        <div class="filter-block">
+          <h4>وضعیت کالا</h4>
+          <label><input type="checkbox" class="filter-cond" value="new" checked> نو مثل نو</label>
+          <label><input type="checkbox" class="filter-cond" value="good" checked> در حد نو / خوب</label>
+          <label><input type="checkbox" class="filter-cond" value="fair" checked> قابل قبول</label>
+        </div>
+        <div class="filter-block">
+          <h4>محدوده قیمت</h4>
+          <label><input type="radio" name="price-range" class="filter-price" value="all" checked> همه</label>
+          <label><input type="radio" name="price-range" class="filter-price" value="0-100000"> تا ۱۰۰,۰۰۰ تومان</label>
+          <label><input type="radio" name="price-range" class="filter-price" value="100000-300000"> ۱۰۰ تا ۳۰۰ هزار تومان</label>
+          <label><input type="radio" name="price-range" class="filter-price" value="300000-999999999"> بالای ۳۰۰ هزار تومان</label>
+        </div>
+      </aside>
+
+      <div class="shop-main">
+        <div class="shop-toolbar">
+          <span class="shop-result-count" id="shop-result-count">۰ کالا</span>
+          <select id="sort-select" class="sort-select">
+            <option value="default">مرتب‌سازی: پیشنهادی</option>
+            <option value="price-asc">ارزان‌ترین</option>
+            <option value="price-desc">گران‌ترین</option>
+            <option value="discount-desc">بیشترین تخفیف</option>
+          </select>
+        </div>
+        <div class="prod-grid" id="prod-grid">
+          <p style="grid-column:1/-1;text-align:center;color:var(--ink-soft);">در حال بارگذاری محصولات...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="stitch"></div></div>
+
+<section id="sell">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>چطور کار می‌کنه</h2>
+      <p>چه بخواید بخرید، چه بخواید اسباب‌بازی‌های خونه رو بفروشید.</p>
+    </div>
+    <div class="flow-toggle">
+      <button class="flow-tab active" data-flow="buy">می‌خوام بخرم</button>
+      <button class="flow-tab" data-flow="sell">می‌خوام بفروشم</button>
+    </div>
+    <div class="flow-panel active" id="flow-buy">
+      <div class="flow-step"><div class="flow-num">۱</div><h3>انتخاب کن</h3><p>از بین صدها اسباب‌بازی بازرسی‌شده، مناسب سن و علاقه بچه‌تون رو پیدا کنید.</p></div>
+      <div class="flow-step"><div class="flow-num">۲</div><h3>بازرسی و تمیزکاری</h3><p>هر قطعه پیش از فروش، شسته، ضدعفونی و از نظر ایمنی بررسی شده.</p></div>
+      <div class="flow-step"><div class="flow-num">۳</div><h3>تحویل درب منزل</h3><p>سفارش رو ثبت کنید، در کمتر از ۴۸ ساعت درب منزل تحویل می‌گیرید.</p></div>
+    </div>
+    <div class="flow-panel" id="flow-sell">
+      <div class="flow-step"><div class="flow-num">۱</div><h3>عکس بگیر و ثبت کن</h3><p>چند عکس از اسباب‌بازی بگیرید و توی فرم آنلاین ثبت کنید.</p></div>
+      <div class="flow-step"><div class="flow-num">۲</div><h3>کارشناسی و قیمت‌گذاری</h3><p>تیم ما وضعیت رو بررسی می‌کنه و همون روز قیمت پیشنهادی می‌ده.</p></div>
+      <div class="flow-step"><div class="flow-num">۳</div><h3>تحویل بده، پول بگیر</h3><p>اسباب‌بازی رو تحویل بدید و مبلغ رو نقد یا کارت به کارت دریافت کنید.</p></div>
+    </div>
+
+    <form class="sell-form" id="sell-form">
+      <h3>اسباب‌بازی‌تون رو معرفی کنید</h3>
+      <p class="hint">فرم رو پر کنید، تیم ما ظرف ۲۴ ساعت باهاتون تماس می‌گیره.</p>
+      <div class="field"><label>نام و نام خانوادگی</label><input type="text" required placeholder="مثلاً سارا محمدی"></div>
+      <div class="field"><label>شماره تماس</label><input type="tel" required placeholder="۰۹۱۲۱۲۳۴۵۶۷"></div>
+      <div class="field"><label>توضیح اسباب‌بازی</label><textarea required placeholder="نوع، وضعیت، تعداد..."></textarea></div>
+      <button type="submit" class="btn btn-primary">ارسال درخواست</button>
+      <div class="form-msg" id="sell-msg">درخواستتون ثبت شد! به‌زودی باهاتون تماس می‌گیریم. ✓</div>
+    </form>
+  </div>
+</section>
+
+<div class="wrap"><div class="stitch"></div></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>حرف مشتری‌ها</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <p class="quote">فکر می‌کردم دست دوم یعنی کهنه، ولی همه چیز مثل نو بود و بچه‌م اصلاً نفهمید فرق داره.</p>
+        <div class="test-who"><div class="test-avatar">م</div>مادر یه پسر ۴ ساله</div>
+      </div>
+      <div class="test-card">
+        <p class="quote">اسباب‌بازی‌های اتاق دخترمو که دیگه باهاشون بازی نمی‌کرد فروختم، هم اتاق خلوت شد هم پول خوبی گرفتم.</p>
+        <div class="test-who"><div class="test-avatar">ر</div>فروشنده در دوباره‌بازی</div>
+      </div>
+      <div class="test-card">
+        <p class="quote">تگ وضعیت روی هر محصول خیلی کمک کرد؛ دقیقاً می‌دونستم چی سفارش می‌دم.</p>
+        <div class="test-who"><div class="test-avatar">ن</div>پدر دوقلوهای ۶ ساله</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>یه گوشه از خونه پر از اسباب‌بازیه که دیگه بازی نمی‌شه؟</h2>
+      <p>همین حالا ثبتش کنید، تیم ما ظرف ۲۴ ساعت قیمت پیشنهادی می‌ده.</p>
+      <a href="#sell-form" class="btn btn-primary">شروع فروش</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:12px;"><div class="logo-badge">♻</div>دوباره‌بازی</div>
+        <p style="color:var(--ink-soft);font-size:14px;max-width:280px;">فروشگاه آنلاین اسباب‌بازی دست دوم، بازرسی‌شده و تمیز، برای خانواده‌های ایرانی.</p>
+      </div>
+      <div>
+        <h4>فروشگاه</h4>
+        <ul><li>محصولات جدید</li><li>پرفروش‌ها</li><li>تخفیف‌دار‌ها</li></ul>
+      </div>
+      <div>
+        <h4>شرکت</h4>
+        <ul><li>درباره ما</li><li>فروش اسباب‌بازی</li><li>تماس با ما</li></ul>
+      </div>
+      <div>
+        <h4>عضویت در خبرنامه</h4>
+        <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">از محصولات تازه باخبر شوید.</p>
+        <form id="nl-form" style="display:flex;gap:8px;">
+          <input type="email" id="nl-email" required placeholder="ایمیل شما" style="flex:1;padding:10px 12px;border-radius:10px;border:2px solid var(--ink);background:var(--card);font-family:inherit;">
+          <button type="submit" class="btn btn-primary btn-sm">عضویت</button>
+        </form>
+        <div class="nl-msg" id="nl-msg">عضو شدید! ممنون از همراهیتون. ✓</div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© ۱۴۰۳ دوباره‌بازی. همه حقوق محفوظ است.</span>
+      <span>ساخته‌شده با ♥ برای خانواده‌ها &nbsp;·&nbsp; <button class="admin-link" id="admin-open-link">ورود مدیر</button></span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<div class="cart-overlay" id="cart-overlay">
+  <div class="cart-drawer">
+    <div class="cart-head">
+      <h3 style="font-size:19px;">سبد خرید شما</h3>
+      <button class="cart-close" id="cart-close-btn">✕</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-total" id="cart-total" style="display:none;">
+      <span>جمع کل</span><span id="cart-total-amount">۰ ت</span>
+    </div>
+    <button class="btn btn-primary" id="cart-checkout-open" style="width:100%;justify-content:center;display:none;">ثبت سفارش</button>
+
+    <form class="checkout-form" id="checkout-form">
+      <div class="field"><label>نام و نام خانوادگی</label><input type="text" required id="co-name" placeholder="مثلاً سارا محمدی"></div>
+      <div class="field"><label>شماره تماس</label><input type="tel" required id="co-phone" placeholder="۰۹۱۲۱۲۳۴۵۶۷"></div>
+      <div class="field"><label>آدرس تحویل</label><textarea required id="co-address" placeholder="آدرس کامل..."></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">تأیید نهایی سفارش</button>
+      <div class="form-msg" id="checkout-msg">سفارشتون با موفقیت ثبت شد! به‌زودی باهاتون تماس می‌گیریم. ✓</div>
+    </form>
+  </div>
+</div>
+
+<div id="admin-gate">
+  <div class="admin-box">
+    <h3 style="margin-bottom:6px;">ورود پنل مدیریت</h3>
+    <p style="font-size:13px;color:var(--ink-soft);margin:0;">رمز عبور رو وارد کنید</p>
+    <input type="password" id="admin-pass" placeholder="رمز عبور">
+    <div id="admin-pass-error" style="color:var(--brick);font-size:13px;margin-bottom:12px;display:none;">رمز اشتباهه</div>
+    <button class="btn btn-primary" id="admin-login-btn" style="width:100%;justify-content:center;">ورود</button>
+    <div style="margin-top:14px;"><a href="#" id="admin-back-link" style="font-size:13px;color:var(--ink-soft);">بازگشت به سایت</a></div>
+  </div>
+</div>
+
+<div id="admin-panel">
+  <div class="admin-wrap">
+    <div class="admin-head">
+      <h2>پنل مدیریت دوباره‌بازی</h2>
+      <button class="btn btn-outline btn-sm" id="admin-logout-btn">خروج و بازگشت به سایت</button>
+    </div>
+
+    <div class="admin-section">
+      <h3>افزودن محصول جدید</h3>
+      <div class="admin-add-grid">
+        <div class="field"><input type="text" id="np-name" placeholder="نام محصول"></div>
+        <div class="field"><input type="text" id="np-emoji" placeholder="ایموجی (مثلاً 🧸)"></div>
+        <div class="field">
+          <select id="np-cond" style="width:100%;padding:11px 14px;border-radius:10px;border:2px solid var(--ink);background:var(--paper);font-family:inherit;font-size:14px;">
+            <option value="new">نو مثل نو</option>
+            <option value="good">در حد نو / خوب</option>
+            <option value="fair">قابل قبول</option>
+          </select>
+        </div>
+        <div class="field"><input type="number" id="np-price" placeholder="قیمت (تومان)"></div>
+        <div class="field">
+          <select id="np-cat" style="width:100%;padding:11px 14px;border-radius:10px;border:2px solid var(--ink);background:var(--paper);font-family:inherit;font-size:14px;">
+            <option value="عروسک">عروسک و عروسک‌خونه</option>
+            <option value="ماشین">ماشین و ریموت‌کنترلی</option>
+            <option value="لگو">لگو و سازه‌ای</option>
+            <option value="پازل">فکری، آموزشی و پازل</option>
+          </select>
+        </div>
+        <div class="field"><input type="number" id="np-oldprice" placeholder="قیمت قبل از تخفیف"></div>
+      </div>
+      <button class="btn btn-primary btn-sm" id="np-add-btn">افزودن به فروشگاه</button>
+    </div>
+
+    <div class="admin-section">
+      <h3>محصولات فروشگاه (<span id="admin-prod-count" class="badge-count">۰</span>)</h3>
+      <table class="admin-table" id="admin-prod-table"><tbody></tbody></table>
+    </div>
+
+    <div class="admin-section">
+      <h3>سفارش‌های ثبت‌شده (<span id="admin-order-count" class="badge-count">۰</span>)</h3>
+      <table class="admin-table" id="admin-order-table"><tbody></tbody></table>
+    </div>
+
+    <div class="admin-section">
+      <h3>درخواست‌های فروش اسباب‌بازی (<span id="admin-sell-count" class="badge-count">۰</span>)</h3>
+      <table class="admin-table" id="admin-sell-table"><tbody></tbody></table>
+    </div>
+
+    <div class="admin-section">
+      <h3>اعضای خبرنامه (<span id="admin-nl-count" class="badge-count">۰</span>)</h3>
+      <table class="admin-table" id="admin-nl-table"><tbody></tbody></table>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ADMIN_PASSWORD = 'dobarebazi1403';
+  const CONDITION_LABELS = { new:'نو مثل نو', good:'در حد نو / خوب', fair:'قابل قبول' };
+  const CONDITION_CLASS = { new:'cond-new', good:'cond-good', fair:'cond-fair' };
+
+  const DEFAULT_PRODUCTS = [
+    {id:'p1', name:'خرس عروسکی بزرگ، پشمالو', emoji:'🧸', cond:'new', cat:'عروسک', price:185000, oldPrice:450000, rating:4.8},
+    {id:'p2', name:'ماشین پلیس ریموت‌کنترلی', emoji:'🚓', cond:'good', cat:'ماشین', price:290000, oldPrice:680000, rating:4.5},
+    {id:'p3', name:'لگو سازه‌ای ۳۵۰ تکه، کامل', emoji:'🧱', cond:'good', cat:'لگو', price:220000, oldPrice:520000, rating:4.7},
+    {id:'p4', name:'پازل چوبی حیوانات، ۲۴ تکه', emoji:'🧩', cond:'fair', cat:'پازل', price:65000, oldPrice:150000, rating:4.2}
+  ];
+
+  function fmt(n){ return Number(n).toLocaleString('fa-IR'); }
+
+  // In-memory fallback so buttons still work even if window.storage
+  // isn't available (e.g. file opened outside the Claude artifact viewer).
+  // Inside Claude, window.storage is used and data persists for real.
+  const memoryStore = {};
+  async function storageGet(key, shared){
+    if(window.storage){
+      try{
+        const res = await window.storage.get(key, shared);
+        return res ? res.value : null;
+      }catch(e){ return null; }
+    }
+    return memoryStore[(shared?'s:':'p:')+key] ?? null;
+  }
+  async function storageSet(key, value, shared){
+    if(window.storage){
+      try{ await window.storage.set(key, value, shared); return; }
+      catch(e){ /* fall through to memory */ }
+    }
+    memoryStore[(shared?'s:':'p:')+key] = value;
+  }
+
+  async function getList(key){
+    const raw = await storageGet(key, true);
+    return raw ? JSON.parse(raw) : [];
+  }
+  async function setList(key, arr){
+    await storageSet(key, JSON.stringify(arr), true);
+  }
+
+  async function loadProducts(){
+    let products = await getList('products');
+    if(!products.length){
+      products = DEFAULT_PRODUCTS;
+      await setList('products', products);
+    }
+    return products;
+  }
+
+  let allProducts = [];
+
+  function renderStorefrontProducts(products){
+    const grid = document.getElementById('prod-grid');
+    document.getElementById('shop-result-count').textContent = products.length.toLocaleString('fa-IR') + ' کالا';
+    if(!products.length){
+      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--ink-soft);">کالایی با این فیلتر پیدا نشد.</p>';
+      return;
+    }
+    grid.innerHTML = products.map(p => {
+      const discount = p.oldPrice ? Math.round(100 - (p.price/p.oldPrice*100)) : 0;
+      const rating = p.rating || 4.5;
+      return `
+      <div class="prod-card">
+        <div class="prod-img">
+          ${p.emoji}
+          <span class="cond-tag ${CONDITION_CLASS[p.cond]}">${CONDITION_LABELS[p.cond]}</span>
+          ${discount > 0 ? `<span class="discount-badge">٪${discount.toLocaleString('fa-IR')}−</span>` : ''}
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">${p.name}</div>
+          <div class="prod-rating">⭐ ${rating.toLocaleString('fa-IR')} <span>(از خریداران قبلی)</span></div>
+          <div class="prod-meta">
+            ${p.oldPrice ? `<span class="prod-old">${fmt(p.oldPrice)} تومان</span>` : ''}
+            <span class="prod-price">${fmt(p.price)} <b>تومان</b></span>
+          </div>
+          <button class="cart-add-btn" data-id="${p.id}">افزودن به سبد</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function applyFiltersAndSort(){
+    const checkedCats = Array.from(document.querySelectorAll('.filter-cat:checked')).map(el => el.value);
+    const checkedConds = Array.from(document.querySelectorAll('.filter-cond:checked')).map(el => el.value);
+    const priceRange = document.querySelector('.filter-price:checked').value;
+    const [minP, maxP] = priceRange === 'all' ? [0, Infinity] : priceRange.split('-').map(Number);
+    const sortVal = document.getElementById('sort-select').value;
+
+    let filtered = allProducts.filter(p =>
+      checkedCats.includes(p.cat) &&
+      checkedConds.includes(p.cond) &&
+      p.price >= minP && p.price <= maxP
+    );
+
+    if(sortVal === 'price-asc') filtered.sort((a,b)=>a.price-b.price);
+    else if(sortVal === 'price-desc') filtered.sort((a,b)=>b.price-a.price);
+    else if(sortVal === 'discount-desc') filtered.sort((a,b)=>{
+      const da = a.oldPrice ? 1-a.price/a.oldPrice : 0;
+      const db = b.oldPrice ? 1-b.price/b.oldPrice : 0;
+      return db-da;
+    });
+
+    renderStorefrontProducts(filtered);
+  }
+
+  document.querySelectorAll('.filter-cat, .filter-cond, .filter-price').forEach(el=>{
+    el.addEventListener('change', applyFiltersAndSort);
+  });
+  document.getElementById('sort-select').addEventListener('change', applyFiltersAndSort);
+
+  function renderAdminProducts(products){
+    document.getElementById('admin-prod-count').textContent = products.length.toLocaleString('fa-IR');
+    const tbody = document.querySelector('#admin-prod-table tbody');
+    if(!products.length){
+      tbody.innerHTML = '<tr><td class="admin-empty">هنوز محصولی اضافه نشده.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = `<tr><th>محصول</th><th>وضعیت</th><th>قیمت</th><th></th></tr>` +
+      products.map(p => `
+        <tr>
+          <td>${p.emoji} ${p.name}</td>
+          <td>${CONDITION_LABELS[p.cond]}</td>
+          <td>${fmt(p.price)} ت</td>
+          <td><button class="del-btn" data-id="${p.id}" data-type="product">حذف</button></td>
+        </tr>`).join('');
+  }
+
+  function renderAdminSellRequests(list){
+    document.getElementById('admin-sell-count').textContent = list.length.toLocaleString('fa-IR');
+    const tbody = document.querySelector('#admin-sell-table tbody');
+    if(!list.length){
+      tbody.innerHTML = '<tr><td class="admin-empty">هنوز درخواستی ثبت نشده.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = `<tr><th>نام</th><th>تماس</th><th>توضیح</th><th>تاریخ</th><th></th></tr>` +
+      list.slice().reverse().map(r => `
+        <tr>
+          <td>${r.name}</td>
+          <td>${r.phone}</td>
+          <td>${r.desc}</td>
+          <td>${new Date(r.ts).toLocaleDateString('fa-IR')}</td>
+          <td><button class="del-btn" data-id="${r.id}" data-type="sell">حذف</button></td>
+        </tr>`).join('');
+  }
+
+  function renderAdminNewsletter(list){
+    document.getElementById('admin-nl-count').textContent = list.length.toLocaleString('fa-IR');
+    const tbody = document.querySelector('#admin-nl-table tbody');
+    if(!list.length){
+      tbody.innerHTML = '<tr><td class="admin-empty">هنوز کسی عضو نشده.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = `<tr><th>ایمیل</th><th></th></tr>` +
+      list.slice().reverse().map(email => `
+        <tr><td>${email}</td><td><button class="del-btn" data-id="${email}" data-type="nl">حذف</button></td></tr>`).join('');
+  }
+
+  function renderAdminOrders(list){
+    document.getElementById('admin-order-count').textContent = list.length.toLocaleString('fa-IR');
+    const tbody = document.querySelector('#admin-order-table tbody');
+    if(!list.length){
+      tbody.innerHTML = '<tr><td class="admin-empty">هنوز سفارشی ثبت نشده.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = `<tr><th>نام</th><th>تماس</th><th>آدرس</th><th>اقلام</th><th>مبلغ</th><th>تاریخ</th><th></th></tr>` +
+      list.slice().reverse().map(o => `
+        <tr>
+          <td>${o.name}</td>
+          <td>${o.phone}</td>
+          <td>${o.address}</td>
+          <td>${o.items.map(i => `${i.name} ×${i.qty}`).join('، ')}</td>
+          <td>${fmt(o.total)} ت</td>
+          <td>${new Date(o.ts).toLocaleDateString('fa-IR')}</td>
+          <td><button class="del-btn" data-id="${o.id}" data-type="order">حذف</button></td>
+        </tr>`).join('');
+  }
+
+  async function refreshAdmin(){
+    renderAdminProducts(await getList('products'));
+    renderAdminOrders(await getList('orders'));
+    renderAdminSellRequests(await getList('sell-requests'));
+    renderAdminNewsletter(await getList('newsletter'));
+  }
+
+  // --- init storefront ---
+  loadProducts().then(products => { allProducts = products; applyFiltersAndSort(); });
+
+  document.querySelectorAll('.flow-tab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      document.querySelectorAll('.flow-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.flow-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('flow-'+tab.dataset.flow).classList.add('active');
+    });
+  });
+
+  // --- cart (personal, not shared) ---
+  async function getCart(){
+    const raw = await storageGet('cart', false);
+    return raw ? JSON.parse(raw) : [];
+  }
+  async function setCart(cart){
+    await storageSet('cart', JSON.stringify(cart), false);
+  }
+
+  async function updateCartBadge(){
+    const cart = await getCart();
+    const count = cart.reduce((s,i)=>s+i.qty,0);
+    const badge = document.getElementById('cart-count');
+    if(count > 0){ badge.style.display='flex'; badge.textContent = count.toLocaleString('fa-IR'); }
+    else{ badge.style.display='none'; }
+  }
+
+  async function renderCartDrawer(){
+    const cart = await getCart();
+    const itemsEl = document.getElementById('cart-items');
+    const totalEl = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('cart-checkout-open');
+    const checkoutForm = document.getElementById('checkout-form');
+    checkoutForm.classList.remove('show');
+    if(!cart.length){
+      itemsEl.innerHTML = '<div class="cart-empty">سبد خریدتون خالیه.</div>';
+      totalEl.style.display='none';
+      checkoutBtn.style.display='none';
+      return;
+    }
+    itemsEl.innerHTML = cart.map(i => `
+      <div class="cart-item">
+        <div class="cart-item-emoji">${i.emoji}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${i.name}</div>
+          <div class="cart-item-price">${fmt(i.price)} ت</div>
+        </div>
+        <div class="qty-controls">
+          <button class="qty-btn" data-id="${i.id}" data-action="dec">−</button>
+          <span>${i.qty}</span>
+          <button class="qty-btn" data-id="${i.id}" data-action="inc">+</button>
+        </div>
+      </div>`).join('');
+    const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+    document.getElementById('cart-total-amount').textContent = fmt(total) + ' ت';
+    totalEl.style.display='flex';
+    checkoutBtn.style.display='flex';
+  }
+
+  document.getElementById('cart-open-btn').addEventListener('click', async ()=>{
+    await renderCartDrawer();
+    document.getElementById('cart-overlay').classList.add('show');
+  });
+  document.getElementById('cart-close-btn').addEventListener('click', ()=>{
+    document.getElementById('cart-overlay').classList.remove('show');
+  });
+  document.getElementById('cart-overlay').addEventListener('click', (e)=>{
+    if(e.target.id === 'cart-overlay') e.target.classList.remove('show');
+  });
+
+  document.getElementById('prod-grid').addEventListener('click', async (e)=>{
+    if(!e.target.classList.contains('cart-add-btn')) return;
+    const id = e.target.dataset.id;
+    const products = await getList('products');
+    const product = products.find(p => p.id === id);
+    if(!product) return;
+    const cart = await getCart();
+    const existing = cart.find(i => i.id === id);
+    if(existing) existing.qty += 1;
+    else cart.push({ id: product.id, name: product.name, emoji: product.emoji, price: product.price, qty: 1 });
+    await setCart(cart);
+    await updateCartBadge();
+    e.target.textContent = 'اضافه شد ✓';
+    setTimeout(()=>{ e.target.textContent = 'افزودن به سبد'; }, 1200);
+  });
+
+  document.getElementById('cart-items').addEventListener('click', async (e)=>{
+    if(!e.target.classList.contains('qty-btn')) return;
+    const { id, action } = e.target.dataset;
+    let cart = await getCart();
+    const item = cart.find(i => i.id === id);
+    if(!item) return;
+    if(action === 'inc') item.qty += 1;
+    else{ item.qty -= 1; if(item.qty <= 0) cart = cart.filter(i => i.id !== id); }
+    await setCart(cart);
+    await renderCartDrawer();
+    await updateCartBadge();
+  });
+
+  document.getElementById('cart-checkout-open').addEventListener('click', ()=>{
+    document.getElementById('checkout-form').classList.add('show');
+    document.getElementById('cart-checkout-open').style.display = 'none';
+  });
+
+  document.getElementById('checkout-form').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const cart = await getCart();
+    if(!cart.length) return;
+    const order = {
+      id: 'o'+Date.now(),
+      name: document.getElementById('co-name').value,
+      phone: document.getElementById('co-phone').value,
+      address: document.getElementById('co-address').value,
+      items: cart.map(i => ({ name:i.name, qty:i.qty })),
+      total: cart.reduce((s,i)=>s+i.price*i.qty,0),
+      ts: Date.now()
+    };
+    const orders = await getList('orders');
+    orders.push(order);
+    await setList('orders', orders);
+    await setCart([]);
+    document.getElementById('checkout-msg').classList.add('show');
+    document.getElementById('checkout-form').reset();
+    await updateCartBadge();
+    setTimeout(async ()=>{
+      document.getElementById('cart-overlay').classList.remove('show');
+      document.getElementById('checkout-msg').classList.remove('show');
+      document.getElementById('checkout-form').classList.remove('show');
+      await renderCartDrawer();
+    }, 1800);
+  });
+
+  updateCartBadge();
+
+  // --- mobile menu toggle ---
+  const navLinksEl = document.querySelector('.nav-links');
+  document.querySelector('.menu-toggle').addEventListener('click', ()=>{
+    navLinksEl.classList.toggle('open');
+  });
+  navLinksEl.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=> navLinksEl.classList.remove('open'));
+  });
+
+  // --- sell request form ---
+  const sellForm = document.getElementById('sell-form');
+  const sellMsg = document.getElementById('sell-msg');
+  sellForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const inputs = sellForm.querySelectorAll('input, textarea');
+    const [nameEl, phoneEl, descEl] = inputs;
+    const list = await getList('sell-requests');
+    list.push({ id: 's'+Date.now(), name: nameEl.value, phone: phoneEl.value, desc: descEl.value, ts: Date.now() });
+    await setList('sell-requests', list);
+    sellMsg.classList.add('show');
+    sellForm.reset();
+  });
+
+  // --- newsletter form ---
+  const nlForm = document.getElementById('nl-form');
+  const nlMsg = document.getElementById('nl-msg');
+  nlForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const email = document.getElementById('nl-email').value;
+    const list = await getList('newsletter');
+    if(!list.includes(email)) list.push(email);
+    await setList('newsletter', list);
+    nlMsg.classList.add('show');
+    nlForm.reset();
+  });
+
+  // --- admin gate ---
+  const storefrontEl = document.getElementById('storefront');
+  const adminGateEl = document.getElementById('admin-gate');
+  const adminPanelEl = document.getElementById('admin-panel');
+
+  document.getElementById('admin-open-link').addEventListener('click', ()=>{
+    storefrontEl.style.display = 'none';
+    adminGateEl.classList.add('show');
+  });
+  document.getElementById('admin-back-link').addEventListener('click', (e)=>{
+    e.preventDefault();
+    adminGateEl.classList.remove('show');
+    storefrontEl.style.display = '';
+  });
+  document.getElementById('admin-login-btn').addEventListener('click', async ()=>{
+    const val = document.getElementById('admin-pass').value;
+    if(val === ADMIN_PASSWORD){
+      adminGateEl.classList.remove('show');
+      adminPanelEl.classList.add('show');
+      document.getElementById('admin-pass').value = '';
+      document.getElementById('admin-pass-error').style.display = 'none';
+      await refreshAdmin();
+    } else {
+      document.getElementById('admin-pass-error').style.display = 'block';
+    }
+  });
+  document.getElementById('admin-logout-btn').addEventListener('click', ()=>{
+    adminPanelEl.classList.remove('show');
+    storefrontEl.style.display = '';
+  });
+
+  // --- admin: add product ---
+  document.getElementById('np-add-btn').addEventListener('click', async ()=>{
+    const name = document.getElementById('np-name').value.trim();
+    const emoji = document.getElementById('np-emoji').value.trim() || '🧸';
+    const cond = document.getElementById('np-cond').value;
+    const cat = document.getElementById('np-cat').value;
+    const price = Number(document.getElementById('np-price').value);
+    const oldPrice = Number(document.getElementById('np-oldprice').value) || null;
+    if(!name || !price){ alert('لطفاً نام و قیمت رو وارد کنید.'); return; }
+    const products = await getList('products');
+    products.push({ id:'p'+Date.now(), name, emoji, cond, cat, price, oldPrice, rating:4.5 });
+    await setList('products', products);
+    ['np-name','np-emoji','np-price','np-oldprice'].forEach(id => document.getElementById(id).value = '');
+    renderAdminProducts(products);
+    allProducts = products;
+    applyFiltersAndSort();
+  });
+
+  // --- admin: delete rows (event delegation) ---
+  document.getElementById('admin-panel').addEventListener('click', async (e)=>{
+    if(!e.target.classList.contains('del-btn')) return;
+    const { id, type } = e.target.dataset;
+    if(type === 'product'){
+      const products = (await getList('products')).filter(p => p.id !== id);
+      await setList('products', products);
+      renderAdminProducts(products);
+      allProducts = products;
+      applyFiltersAndSort();
+    } else if(type === 'order'){
+      const orders = (await getList('orders')).filter(o => o.id !== id);
+      await setList('orders', orders);
+      renderAdminOrders(orders);
+    } else if(type === 'sell'){
+      const list = (await getList('sell-requests')).filter(r => r.id !== id);
+      await setList('sell-requests', list);
+      renderAdminSellRequests(list);
+    } else if(type === 'nl'){
+      const list = (await getList('newsletter')).filter(email => email !== id);
+      await setList('newsletter', list);
+      renderAdminNewsletter(list);
+    }
+  });
+</script>
+
+</body>
+</html>
