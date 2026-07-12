@@ -720,7 +720,12 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
+  const SUPABASE_URL = 'https://zjwzgsgsguuillhljaob.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_GBu7PNXTIePs5jLr1r4gHQ_VmfQu58D';
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
   const ADMIN_PASSWORD = 'dobarebazi1403';
   const CONDITION_LABELS = { new:'نو مثل نو', good:'در حد نو / خوب', fair:'قابل قبول' };
   const CONDITION_CLASS = { new:'cond-new', good:'cond-good', fair:'cond-fair' };
@@ -734,40 +739,51 @@
 
   function fmt(n){ return Number(n).toLocaleString('fa-IR'); }
 
-  // In-memory fallback so buttons still work even if window.storage
-  // isn't available (e.g. file opened outside the Claude artifact viewer).
-  // Inside Claude, window.storage is used and data persists for real.
-  const memoryStore = {};
-  async function storageGet(key, shared){
-    if(window.storage){
-      try{
-        const res = await window.storage.get(key, shared);
-        return res ? res.value : null;
-      }catch(e){ return null; }
-    }
-    return memoryStore[(shared?'s:':'p:')+key] ?? null;
+  const TABLE_MAP = { products:'products', 'sell-requests':'sell_requests', newsletter:'newsletter', orders:'orders' };
+
+  // Real, shared, persistent storage via Supabase (works across all devices).
+  async function getList(key){
+    const table = TABLE_MAP[key];
+    try{
+      const { data, error } = await sb.from(table).select('*').order('id', { ascending:true });
+      if(error) throw error;
+      return data || [];
+    }catch(e){ console.error('supabase read error', e); return []; }
   }
-  async function storageSet(key, value, shared){
-    if(window.storage){
-      try{ await window.storage.set(key, value, shared); return; }
-      catch(e){ /* fall through to memory */ }
-    }
-    memoryStore[(shared?'s:':'p:')+key] = value;
+  async function addItem(key, obj){
+    const table = TABLE_MAP[key];
+    try{
+      const { data, error } = await sb.from(table).insert(obj).select();
+      if(error) throw error;
+      return data && data[0];
+    }catch(e){ console.error('supabase insert error', e); return null; }
+  }
+  async function deleteItem(key, id){
+    const table = TABLE_MAP[key];
+    try{
+      const { error } = await sb.from(table).delete().eq('id', id);
+      if(error) throw error;
+    }catch(e){ console.error('supabase delete error', e); }
   }
 
-  async function getList(key){
-    const raw = await storageGet(key, true);
-    return raw ? JSON.parse(raw) : [];
+  // Cart stays personal to this device/browser (real localStorage, since this
+  // is now a real deployed site, not the Claude artifact preview).
+  function getCartLocal(){
+    try{ return JSON.parse(localStorage.getItem('cart') || '[]'); }
+    catch(e){ return []; }
   }
-  async function setList(key, arr){
-    await storageSet(key, JSON.stringify(arr), true);
+  function setCartLocal(cart){
+    try{ localStorage.setItem('cart', JSON.stringify(cart)); }catch(e){}
   }
 
   async function loadProducts(){
     let products = await getList('products');
     if(!products.length){
-      products = DEFAULT_PRODUCTS;
-      await setList('products', products);
+      for(const p of DEFAULT_PRODUCTS){
+        const { id, ...rest } = p; // let Supabase assign real ids
+        await addItem('products', rest);
+      }
+      products = await getList('products');
     }
     return products;
   }
@@ -862,8 +878,8 @@
         <tr>
           <td>${r.name}</td>
           <td>${r.phone}</td>
-          <td>${r.desc}</td>
-          <td>${new Date(r.ts).toLocaleDateString('fa-IR')}</td>
+          <td>${r.description}</td>
+          <td>${r.created_at ? new Date(r.created_at).toLocaleDateString('fa-IR') : ''}</td>
           <td><button class="del-btn" data-id="${r.id}" data-type="sell">حذف</button></td>
         </tr>`).join('');
   }
@@ -876,8 +892,8 @@
       return;
     }
     tbody.innerHTML = `<tr><th>ایمیل</th><th></th></tr>` +
-      list.slice().reverse().map(email => `
-        <tr><td>${email}</td><td><button class="del-btn" data-id="${email}" data-type="nl">حذف</button></td></tr>`).join('');
+      list.slice().reverse().map(row => `
+        <tr><td>${row.email}</td><td><button class="del-btn" data-id="${row.id}" data-type="nl">حذف</button></td></tr>`).join('');
   }
 
   function renderAdminOrders(list){
@@ -888,16 +904,20 @@
       return;
     }
     tbody.innerHTML = `<tr><th>نام</th><th>تماس</th><th>آدرس</th><th>اقلام</th><th>مبلغ</th><th>تاریخ</th><th></th></tr>` +
-      list.slice().reverse().map(o => `
+      list.slice().reverse().map(o => {
+        let items = [];
+        try{ items = typeof o.items === 'string' ? JSON.parse(o.items) : (o.items || []); }catch(e){}
+        return `
         <tr>
           <td>${o.name}</td>
           <td>${o.phone}</td>
           <td>${o.address}</td>
-          <td>${o.items.map(i => `${i.name} ×${i.qty}`).join('، ')}</td>
+          <td>${items.map(i => `${i.name} ×${i.qty}`).join('، ')}</td>
           <td>${fmt(o.total)} ت</td>
-          <td>${new Date(o.ts).toLocaleDateString('fa-IR')}</td>
+          <td>${o.created_at ? new Date(o.created_at).toLocaleDateString('fa-IR') : ''}</td>
           <td><button class="del-btn" data-id="${o.id}" data-type="order">حذف</button></td>
-        </tr>`).join('');
+        </tr>`;
+      }).join('');
   }
 
   async function refreshAdmin(){
@@ -920,13 +940,8 @@
   });
 
   // --- cart (personal, not shared) ---
-  async function getCart(){
-    const raw = await storageGet('cart', false);
-    return raw ? JSON.parse(raw) : [];
-  }
-  async function setCart(cart){
-    await storageSet('cart', JSON.stringify(cart), false);
-  }
+  async function getCart(){ return getCartLocal(); }
+  async function setCart(cart){ setCartLocal(cart); }
 
   async function updateCartBadge(){
     const cart = await getCart();
@@ -1018,17 +1033,13 @@
     const cart = await getCart();
     if(!cart.length) return;
     const order = {
-      id: 'o'+Date.now(),
       name: document.getElementById('co-name').value,
       phone: document.getElementById('co-phone').value,
       address: document.getElementById('co-address').value,
-      items: cart.map(i => ({ name:i.name, qty:i.qty })),
-      total: cart.reduce((s,i)=>s+i.price*i.qty,0),
-      ts: Date.now()
+      items: JSON.stringify(cart.map(i => ({ name:i.name, qty:i.qty }))),
+      total: cart.reduce((s,i)=>s+i.price*i.qty,0)
     };
-    const orders = await getList('orders');
-    orders.push(order);
-    await setList('orders', orders);
+    await addItem('orders', order);
     await setCart([]);
     document.getElementById('checkout-msg').classList.add('show');
     document.getElementById('checkout-form').reset();
@@ -1059,9 +1070,7 @@
     e.preventDefault();
     const inputs = sellForm.querySelectorAll('input, textarea');
     const [nameEl, phoneEl, descEl] = inputs;
-    const list = await getList('sell-requests');
-    list.push({ id: 's'+Date.now(), name: nameEl.value, phone: phoneEl.value, desc: descEl.value, ts: Date.now() });
-    await setList('sell-requests', list);
+    await addItem('sell-requests', { name: nameEl.value, phone: phoneEl.value, description: descEl.value });
     sellMsg.classList.add('show');
     sellForm.reset();
   });
@@ -1073,8 +1082,7 @@
     e.preventDefault();
     const email = document.getElementById('nl-email').value;
     const list = await getList('newsletter');
-    if(!list.includes(email)) list.push(email);
-    await setList('newsletter', list);
+    if(!list.some(r => r.email === email)) await addItem('newsletter', { email });
     nlMsg.classList.add('show');
     nlForm.reset();
   });
@@ -1119,10 +1127,9 @@
     const price = Number(document.getElementById('np-price').value);
     const oldPrice = Number(document.getElementById('np-oldprice').value) || null;
     if(!name || !price){ alert('لطفاً نام و قیمت رو وارد کنید.'); return; }
-    const products = await getList('products');
-    products.push({ id:'p'+Date.now(), name, emoji, cond, cat, price, oldPrice, rating:4.5 });
-    await setList('products', products);
+    await addItem('products', { name, emoji, cond, cat, price, oldPrice, rating:4.5 });
     ['np-name','np-emoji','np-price','np-oldprice'].forEach(id => document.getElementById(id).value = '');
+    const products = await getList('products');
     renderAdminProducts(products);
     allProducts = products;
     applyFiltersAndSort();
@@ -1133,23 +1140,20 @@
     if(!e.target.classList.contains('del-btn')) return;
     const { id, type } = e.target.dataset;
     if(type === 'product'){
-      const products = (await getList('products')).filter(p => p.id !== id);
-      await setList('products', products);
+      await deleteItem('products', id);
+      const products = await getList('products');
       renderAdminProducts(products);
       allProducts = products;
       applyFiltersAndSort();
     } else if(type === 'order'){
-      const orders = (await getList('orders')).filter(o => o.id !== id);
-      await setList('orders', orders);
-      renderAdminOrders(orders);
+      await deleteItem('orders', id);
+      renderAdminOrders(await getList('orders'));
     } else if(type === 'sell'){
-      const list = (await getList('sell-requests')).filter(r => r.id !== id);
-      await setList('sell-requests', list);
-      renderAdminSellRequests(list);
+      await deleteItem('sell-requests', id);
+      renderAdminSellRequests(await getList('sell-requests'));
     } else if(type === 'nl'){
-      const list = (await getList('newsletter')).filter(email => email !== id);
-      await setList('newsletter', list);
-      renderAdminNewsletter(list);
+      await deleteItem('newsletter', id);
+      renderAdminNewsletter(await getList('newsletter'));
     }
   });
 </script>
